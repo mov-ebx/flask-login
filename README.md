@@ -2,16 +2,9 @@
     <h1>Flask Login/Signup</h1>
     <img height="300" src="https://i.giphy.com/media/KsLnm50rkhA6A/giphy.gif">
     <h3>A simple login system in Flask</h3>
-    <h5>This is in no way what a modern login system should be. It lacks tons of features such as:<br><br>
-        <li> Email verification
-        </li>
-        <li> Password resettng
-        </li>
-        <li> 2-Factor Authentication
-        </li>
-    <br>
-    This was my very first time using Flask and this is my first experience in web development, so this code is FAR from perfect. I'm sure I overcomplicated most of it.
-    </h5>
+    <h5>This is in no way what a modern login system should be. It lacks tons of features such as 2-Factor Authentication</h5>
+    <h5>This was my very first time using Flask and this is my first experience in web development, so this code is FAR from perfect. I'm sure I overcomplicated most of it.</h5>
+    <h5>Please report vulnerabilities in the <a href="https://github.com/mov-ebx/flask-login/issues">Issues page.</a></h5>
 
 [![Python 3.10](https://img.shields.io/badge/Python-3.10-bluesvg)](https://www.python.org/download/releases/3.0/)
 [![GitHub license](https://img.shields.io/badge/license-LGPL%202.1-green)](./LICENSE)
@@ -22,11 +15,27 @@
 
 ## How do I use this?
 
-Make sure you have the [requirements](requirements.txt) installed.
+- Make sure you have the [requirements](requirements.txt) installed.
+- Run main.py and it will host the website at localhost on port 80.
+- It'll ask you for your SendGrip API key and Email
 
-Simply run main.py and it will host the website at localhost on port 80.
+Don't worry about the database, it'll automatically set it up for you with SQLite.
 
-It'll automatically create the database which uses SQLite.
+## What features does it have?
+
+- Signing in/up
+- Email verification
+
+### What features are planned?
+
+- Password resetting
+
+### What features could be added?
+
+I don't plan on adding these, but I may add them in the future
+
+- 2-Factor Authentication
+- Phone number verification
 
 ## Credits
 

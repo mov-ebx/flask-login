@@ -1,4 +1,4 @@
-import db.database
+import utils.database
 from flask import request, Blueprint
 
 from api.auth import check_token

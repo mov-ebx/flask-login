@@ -11,7 +11,9 @@ def create():
         EMAIL TEXT,
         PASSWORD TEXT NOT NULL,
         AUTH TEXT NOT NULL,
-        ROLE TEXT NOT NULL
+        ROLE TEXT NOT NULL,
+        CODE INT,
+        VERIFIED INT NOT NULL
     );
     """)
 
