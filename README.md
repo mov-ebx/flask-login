@@ -16,18 +16,19 @@
 ## How do I use this?
 
 - Make sure you have the [requirements](requirements.txt) installed.
-- Run main.py and it will host the website at localhost on port 80.
+- Run main.py and it will host the website at localhost on port 5000.
 - It'll ask you for your SendGrip API key and Email
 
 Don't worry about the database, it'll automatically set it up for you with SQLite.
+
+### What should I modify?
+
+- You should modify the email messages along with the urls sent in the emails to your domain, which can be done in [auth.py](api/auth.py)
 
 ## What features does it have?
 
 - Signing in/up
 - Email verification
-
-### What features are planned?
-
 - Password resetting
 
 ### What features could be added?

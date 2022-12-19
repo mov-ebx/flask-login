@@ -31,6 +31,12 @@ def verify():
         return app.send_static_file('verify.html')
     return redirect('/dashboard')
 
+@app.route('/reset')
+def reset():
+    if request.args:
+        return app.send_static_file('confirm.html')
+    return app.send_static_file('reset.html')
+
 if __name__=='__main__':
     if not os.path.isdir('secrets'):
         os.mkdir('secrets')

@@ -1,0 +1,31 @@
+<!--
+    I stole the UI from https://codepen.io/ricardoolivaalonso/pen/YzyaRPN
+    Credits to Ricardo Oliva Alonso for designing this beautiful login page
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Access</title>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+        <link href="/static/assets/css/neumorphic.css" rel="stylesheet">
+    </head>
+    <body>
+        <a class="overlay" href="/access">return to access page</a>
+        <div class="main">
+            <div class="container" id="container" style="width:100%;">
+                <div class="form" id="a-form" method="" action="">
+                    <h2 class="form_title title">Enter your email</h2>
+                    <span class="form__span">To reset your password, enter your email and then check your inbox!</span>
+                    <input class="form__input" type="email" id="verification-code" placeholder="Email">
+                    <button class="switch__button form__button button submit switch__button" onclick="reset_by_email(document.getElementById('verification-code').value);">RESET PASSWORD</button>
+                    <br>
+                    <h3 class="error" id="error">Error</h3>
+                </div>
+            </div>
+          </div>
+          <script src="/static/assets/js/access.js"></script>
+    </body>
+</html>

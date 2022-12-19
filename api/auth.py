@@ -41,6 +41,48 @@ def resendverify():
         return 'Resent', 200
     return 'Forbidden', 403
 
+@app.route('resetpassword', methods=['POST'])
+def resetpassword():
+    if request.is_json:
+        data = request.json
+        if data.get('email'):
+            cursor = database.cursor()
+            cursor.execute(f"SELECT * from DATA where EMAIL = '{data['email']}'")
+            check = cursor.fetchone()
+            verify = 'http://0.0.0.0:5000/reset?id='+str(check[0])+'&token='+check[5].split('.')[2]
+            send_email(check[3], 'Password reset', f'If you aren\'t trying to reset your password, ignore this.\n\nReset here: {verify}')
+            return 'Reset sent', 200
+    return 'Invalid reset request', 400
+
+@app.route('resetconfirm', methods=['POST'])
+def resetconfirm():
+    if request.is_json:
+        data = request.json
+        if data.get('id') and data.get('token') and data.get('password'):
+            try:
+                password = re.findall(r'(_\|)(.*)(\|)(.*)', data['password'])[0]
+                if len(password) != 4:
+                    return 'Invalid password structure', 400
+                else:
+                    cursor = database.cursor()
+                    cursor.execute(f"SELECT * from DATA where USERID = '{data['id']}'")
+                    check = cursor.fetchone()
+                    if check[5].split('.')[2] == data['token']:
+                        password = decrypt([password[3], password[1]])
+                        cursor = database.cursor()
+                        token = base64.b64encode(str(data["id"]).encode("ascii")).decode("ascii")+'.'+base64.b64encode(str(time.time()).encode("ascii")).decode("ascii")+'.'+base64.b64encode(str(uuid.uuid1()).encode("ascii")).decode("ascii")
+                        cursor.execute(f'UPDATE DATA SET AUTH = \'{token}\' WHERE USERID == \'{str(data["id"])}\'')
+                        password = werkzeug.security.generate_password_hash(password[1])
+                        cursor.execute(f'UPDATE DATA SET PASSWORD = \'{password}\' WHERE USERID == \'{str(data["id"])}\'')
+                        database.commit()
+                        response = make_response('Password reset!')
+                        response.status_code = 201
+                        response.set_cookie('.SECURITY', token)
+                        return response
+            except:
+                pass
+    return 'Invalid reset request', 403 
+
 @app.route('signup', methods=['POST'])
 def signup():
     if request.is_json:
