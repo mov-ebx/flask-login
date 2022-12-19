@@ -5,6 +5,7 @@ app=Blueprint('dashboard', __name__,)
 
 @app.route('/dashboard')
 def dashboard():
-    if check_token(request.cookies.get('.SECURITY')) == None:
+    check = check_token(request.cookies.get('.SECURITY'))
+    if check == None:
         return redirect('access')
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', username=check[1])

@@ -108,18 +108,18 @@ def login():
             else:
                 password = decrypt([password[3], password[1]])
                 try:
-                    if username.isalnum() == False:
+                    if len(re.findall(r'[a-z,A-Z,0-9,.,@,+]', username)) != len(username):
                         return 'Invalid username or password', 400
                     if len(username) < 0:
                         return 'Invalid username or password', 400
                     cursor = database.cursor()
-                    cursor.execute(f"SELECT COUNT(*) from DATA where USERNAME = '{username}'")
-                    if cursor.fetchone()[0] == 0:
-                        return 'Invalid username or password', 400
-                    cursor = database.cursor()
                     cursor.execute(f"SELECT * from DATA where USERNAME = '{username}'")
                     fetched = cursor.fetchone()
-                    if werkzeug.security.check_password_hash(fetched[4], password[1]):
+                    if fetched == None:
+                        cursor = database.cursor()
+                        cursor.execute(f"SELECT * from DATA where EMAIL = '{username}'")
+                        fetched = cursor.fetchone()
+                    if fetched != None and werkzeug.security.check_password_hash(fetched[4], password[1]):
                         response = make_response('Signed in')
                         response.status_code = 200
                         response.set_cookie('.SECURITY', fetched[5])
