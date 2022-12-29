@@ -1,6 +1,5 @@
 <div align="center">
     <h1>Flask Login/Signup</h1>
-    <img width="400" src="https://i.giphy.com/media/KsLnm50rkhA6A/giphy.gif">
     <h3>A simple login system in Flask</h3>
     <h5>This is in no way what a modern login system should be. It lacks tons of features such as 2-Factor Authentication</h5>
     <h5>This was my very first time using Flask and this is my first experience in web development, so this code is FAR from perfect. I'm sure I overcomplicated most of it.</h5>
